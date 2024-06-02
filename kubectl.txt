@@ -60,5 +60,47 @@ instance-20240602-125903   Ready    <none>          52m   v1.29.0
 instance-20240602-125931   Ready    <none>          52m   v1.29.0
 
 
+
+
+
+============================================================
+# Kubernetes API - Get Pods on Specific Nodes
+
+
+
+
+kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=instance-20240602-125931
+
+
+kubectl get pods -n kube-system -o wide --field-selector spec.nodeName=instance-20240602-125323
+
+kubectl get pods -n kube-system -o wide --field-selector spec.nodeName=instance-20240602-125931
+
+kubectl get pods -n kube-system -o wide --field-selector spec.nodeName=instance-20240602-125903
+
+
+root@instance-20240602-125323:~# kubectl get pods -n kube-system -o wide --field-selector spec.nodeName=instance-20240602-125323
+NAME                                               READY   STATUS    RESTARTS   AGE   IP            NODE                       NOMINATED NODE   READINESS GATES
+calico-kube-controllers-658d97c59c-lnctm           1/1     Running   0          67m   10.85.0.2     instance-20240602-125323   <none>           <none>
+calico-node-dlvrv                                  1/1     Running   0          67m   10.128.0.12   instance-20240602-125323   <none>           <none>
+coredns-76f75df574-l7r6v                           1/1     Running   0          67m   10.85.0.4     instance-20240602-125323   <none>           <none>
+coredns-76f75df574-qzg98                           1/1     Running   0          67m   10.85.0.3     instance-20240602-125323   <none>           <none>
+etcd-instance-20240602-125323                      1/1     Running   0          68m   10.128.0.12   instance-20240602-125323   <none>           <none>
+kube-apiserver-instance-20240602-125323            1/1     Running   0          68m   10.128.0.12   instance-20240602-125323   <none>           <none>
+kube-controller-manager-instance-20240602-125323   1/1     Running   0          68m   10.128.0.12   instance-20240602-125323   <none>           <none>
+kube-proxy-lgkmd                                   1/1     Running   0          67m   10.128.0.12   instance-20240602-125323   <none>           <none>
+kube-scheduler-instance-20240602-125323            1/1     Running   0          68m   10.128.0.12   instance-20240602-125323   <none>           <none>
+root@instance-20240602-125323:~# kubectl get pods -n kube-system -o wide --field-selector spec.nodeName=instance-20240602-125931
+NAME                READY   STATUS    RESTARTS   AGE   IP            NODE                       NOMINATED NODE   READINESS GATES
+calico-node-2hhpm   1/1     Running   0          67m   10.128.0.14   instance-20240602-125931   <none>           <none>
+kube-proxy-5jlv5    1/1     Running   0          67m   10.128.0.14   instance-20240602-125931   <none>           <none>
+root@instance-20240602-125323:~# kubectl get pods -n kube-system -o wide --field-selector spec.nodeName=instance-20240602-125903
+NAME                READY   STATUS    RESTARTS   AGE   IP            NODE                       NOMINATED NODE   READINESS GATES
+calico-node-tk4m4   1/1     Running   0          68m   10.128.0.13   instance-20240602-125903   <none>           <none>
+kube-proxy-bd6sl    1/1     Running   0          68m   10.128.0.13   instance-20240602-125903   <none>           <none>
+
+
+
+
 ====================================================================================================================================================
 
