@@ -33,3 +33,26 @@ instance-20240602-125931   Ready    worker-1        42m   v1.29.0
 Remove Role
 
 kubectl label node <node name> node-role.kubernetes.io/<role name>-
+
+
+kubectl label node instance-20240602-125931 node-role.kubernetes.io/worker-1-
+
+
+node/instance-20240602-125931 unlabeled
+root@instance-20240602-125323:~# kubectl get nodes
+NAME                       STATUS   ROLES           AGE   VERSION
+instance-20240602-125323   Ready    control-plane   52m   v1.29.0
+instance-20240602-125903   Ready    worker-2        52m   v1.29.0
+instance-20240602-125931   Ready    <none>          52m   v1.29.0
+
+
+kubectl label node instance-20240602-125903 node-role.kubernetes.io/worker-2-
+node/instance-20240602-125903 unlabeled
+root@instance-20240602-125323:~# kubectl get nodes
+NAME                       STATUS   ROLES           AGE   VERSION
+instance-20240602-125323   Ready    control-plane   53m   v1.29.0
+instance-20240602-125903   Ready    <none>          52m   v1.29.0
+instance-20240602-125931   Ready    <none>          52m   v1.29.0
+
+
+
