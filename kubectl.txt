@@ -435,7 +435,10 @@ spec:
       - image: luksa/kubia:v3
         name: nodejs
 
-# 
+# 4 
+
+The Deployment "kubia" is invalid: spec.strategy.rollingUpdate.maxUnavailable: Invalid value: intstr.IntOrString{Type:0, IntVal:0, StrVal:""}: may not be 0 when `maxSurge` is 0
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
