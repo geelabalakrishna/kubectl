@@ -258,7 +258,57 @@ kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
 ==========================================================================================================================================================
 
 
+kubectl label pod kubia-rq59h app=test --overwrite
 
+
+
+=================================================
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: kubia
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+         - kubia
+         - prod
+
+  template:
+    metadata:
+      labels:
+        app: kubia
+    spec:
+      containers:
+      - name: kubia
+        image: luksa/kubia
+
+=====================================================================================
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: kubia
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      ver: v1
+    matchExpressions:
+      - { key: app, operator: In, values: [kubia] }
+      - { key: env, operator: In, values: [prod] }
+  template:
+    metadata:
+      labels:
+        app: kubia
+        env: prod
+        ver: v1
+    spec:
+      containers:
+      - name: kubia
+        image: luksa/kubia
 
 
 
